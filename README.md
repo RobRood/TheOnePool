@@ -13,11 +13,14 @@ Elegant Object Pooling Solition for the  Unity3d GameEngine that allows for mult
 
 	# TheOnePool -Methods
 		GetObjectOutOfPool(int pool)
+			Returns GameObject
 			using an int specifiying the index in the Object Pool Array, Returns an activated object from the arrayed Object Pools.
 		GetObjectOutOfPool(int pool, Vector3 pos, Quaternion rot)
+			Returns GameObject
 			using an int specifiying the index in the Object Pool Array, Returns activated object from the arrayed Object Pools and sets its transform.
 		GetObjectOutOfPool(string poolName, Vector3 pos, Quaternion rot)
-				using a string specifiying the name of the Object Pool, Returns activated object from the arrayed Object Pools and sets its transform.
+			Returns GameObject
+			using a string specifiying the name of the Object Pool, Returns activated object from the arrayed Object Pools and sets its transform.
 
 Notes-
 All returned objects are set to active.
