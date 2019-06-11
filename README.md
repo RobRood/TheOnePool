@@ -1,17 +1,17 @@
 # TheOnePool
 Elegant Object Pooling Solition for the  Unity3d GameEngine that allows for multiple object pools to be managed by one script
 
-	# TheOnePool -Properties
+	TheOnePool -Properties
 		instance  -  static property that allows for TheOnePool to be accessed in other script without a reference needed in the inspector
 		objectPools - contains an array of object pools with a variable size set in the inspector. The size defaults to 1 when added the script is attached to a game object.
 
-	# ObjectPool -Properties
+	ObjectPool -Properties
 		poolName - optional string that lets you get objects from a pool by the poolName. 
 		pooledObject - GameObject Variable for the object you with to pool
 		poolSize - int describing the initial size of the pool, if the pool is resized, this value is also adjusted
 		canResize - bool to resize the pool is all the objects in the pool are currently in use, this option is enabled by default
 
-	# TheOnePool -Methods
+	TheOnePool -Methods
 		GetObjectOutOfPool(int pool)
 			Returns GameObject
 			using an int specifiying the index in the Object Pool Array, Returns an activated object from the arrayed Object Pools.
