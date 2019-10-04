@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,9 +44,17 @@ public class TheOnePool : MonoBehaviour
     }
 
     //Intervals
-    //get objet
+    //get object
     public GameObject GetObjectOutOfPool(int pool)
     {
+        //if its a pooled partical system, just grab the first one and make it play
+        if (objectPools[pool].poolType.Equals(PoolType.ParticleSystem))
+        {
+            objectPools[pool].pooledObjects[0].SetActive(true);
+            objectPools[pool].pooledObjects[0].GetComponent<ParticleSystem>().Play();
+            return objectPools[pool].pooledObjects[0];
+        }
+
         for (int i = 0; i < objectPools[pool].pooledObjects.Count; i++)
         {
             if (!objectPools[pool].pooledObjects[i].activeInHierarchy)
@@ -69,6 +77,18 @@ public class TheOnePool : MonoBehaviour
     //get object and set its tranform
     public GameObject GetObjectOutOfPool(int pool, Vector3 pos, Quaternion rot)
     {
+
+        //if its a pooled partical system, just grab the first one and make it play
+        if (objectPools[pool].poolType.Equals(PoolType.ParticleSystem))
+        {
+            GameObject obj = objectPools[pool].pooledObjects[0];
+            obj.transform.position = pos;
+            obj.transform.rotation = rot;
+            obj.SetActive(true);
+            obj.GetComponent<ParticleSystem>().Play();
+            return obj;
+        }
+
         for (int i = 0; i < objectPools[pool].pooledObjects.Count; i++)
         {
             if (!objectPools[pool].pooledObjects[i].activeInHierarchy)
@@ -102,6 +122,16 @@ public class TheOnePool : MonoBehaviour
                 break;
             }
         }
+        //if its a pooled partical system, just grab the first one and make it play
+        if (objectPools[pool].poolType.Equals(PoolType.ParticleSystem))
+        {
+            GameObject obj = objectPools[pool].pooledObjects[0];
+            obj.transform.position = pos;
+            obj.transform.rotation = rot;
+            obj.SetActive(true);
+            obj.GetComponent<ParticleSystem>().Play();
+            return obj;
+        }
 
         for (int i = 0; i < objectPools[pool].pooledObjects.Count; i++)
         {
@@ -119,11 +149,15 @@ public class TheOnePool : MonoBehaviour
             GameObject obj = Instantiate(objectPools[pool].pooledObject, pos, rot);
             objectPools[pool].pooledObjects.Add(obj);
             objectPools[pool].poolSize++;
+            //if its a pooled partical system make it play
+            if (objectPools[pool].poolType.Equals(PoolType.ParticleSystem))
+            {
+                obj.GetComponent<ParticleSystem>().Play();
+            }
             return obj;
         }
         return null;
     }
 }
-
 
  
